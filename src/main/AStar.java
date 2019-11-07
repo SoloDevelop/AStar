@@ -1,10 +1,9 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
-public class AStar {
+public abstract class AStar {
 
 	public Stack<Node> Move(Node startNode, Node targetNode) {
 
@@ -25,12 +24,10 @@ public class AStar {
 				return ConstructPath(targetNode);
 			}
 
-			openList.remove(currentNode); //Processed
+			openList.remove(currentNode); // Processed
 			closedList.add(currentNode);
-			
 
-			
-			for (Node neighborNode : currentNode.neighbors) {
+			for (Node neighborNode : currentNode.getNeighbors()) {
 
 				if (!FindNodeInList(neighborNode, closedList)) {
 
