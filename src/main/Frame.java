@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JSplitPane;
 
 public class Frame extends JFrame {
 
@@ -28,6 +29,7 @@ public class Frame extends JFrame {
 	private JTable table;
 	private JTextField tf_squareSide;
 	public static Frame frame;
+	Tablero tablero;
 
 	/**
 	 * Launch the application.
@@ -45,6 +47,7 @@ public class Frame extends JFrame {
 				}
 			}
 		});
+
 	}
 
 	/**
@@ -75,46 +78,21 @@ public class Frame extends JFrame {
 		JButton btn_Start = new JButton("Start");
 		btn_Start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				int squareSides = Integer.parseInt(tf_squareSide.getText());
+				Start(squareSides);
 
 				GridButtonPanel.N = squareSides;
-
 				new main.GridButtonPanel().display();
 
-				// System.out.println(squareSides);
-//				for (int row = 0; row < squareSides; row++) {
-//					for (int col = 0; col < squareSides; col++) {
-//						JCheckBox b = new JCheckBox("");
-//						centerPanel.add(b, "cell " + col + " " + row);
-//					}
-//				}
-
-//				for (int row = 0; row < squareSides; row++) {
-//					for (int col = 0; col < squareSides; col++) {
-//						JButton b = new JButton();
-//						frame.getContentPane().add(b, -1);
-//						if (b != null)
-//							System.out.println("button " + b.getName() + " added.");
-//					}
-//				}
-
-//				for (int row = 0; row < squareSides; row++) {
-//					for (int col = 0; col < squareSides; col++) {
-//						JCheckBox b = new JCheckBox();
-//						GridBagConstraints gbc_b = new GridBagConstraints();
-//						gbc_b.insets = new Insets(0, 0, 5, 0);
-//						gbc_b.gridx = row;
-//						gbc_b.gridy = col;
-//						centerPanel.add(b, gbc_b);
-//						if (b != null)
-//							System.out.println("button " + b.getName() + " added.");
-//					}
-//				}
 			}
 		});
 		northPanel.add(btn_Start);
 
+	}
+
+	public void Start(int sq) {
+		// TODO Auto-generated method stub
+		tablero = Tablero.getSingletonInstance(sq);
 	}
 
 }

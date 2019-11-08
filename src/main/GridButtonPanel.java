@@ -4,11 +4,16 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -28,8 +33,12 @@ public class GridButtonPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JCheckBox gb = GridButtonPanel.this.getGridButton(row, col);
-				System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
+				// JCheckBox gb = GridButtonPanel.this.getGridButton(row, col);
+				Vector<Integer> v = new Vector<Integer>();
+				v.add(col); // TODO: Check order - 99%sure now its ok
+				v.add(row);
+				Tablero.setUnaccessibles(v);
+//				System.out.println("r" + row + ",c" + col + " " + (b == gb) + " " + (b.equals(gb)));
 			}
 		});
 		return b;
@@ -48,9 +57,23 @@ public class GridButtonPanel {
 	}
 
 	public void display() {
+
 		JFrame f = new JFrame("GridButton");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.add(createGridPanel());
+
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+
+		JButton btnSend = new JButton("Send");
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+
+		splitPane.setRightComponent(btnSend);
+		splitPane.setLeftComponent(createGridPanel());
+		f.add(splitPane);
+
 		f.pack();
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);

@@ -1,5 +1,8 @@
 package main;
 
+import java.util.List;
+import java.util.Vector;
+
 public class Tablero {
 
 	public int squaresNumber;
@@ -35,5 +38,19 @@ public class Tablero {
 	}
 
 	// SINGLETON END
+
+	public static void setUnaccessibles(Vector<Integer> v) {
+
+		int posX = v.get(0);
+		int posY = v.get(1);
+
+		for (int y = 0; y < tablero.squaresNumber; y++) {
+			for (int x = 0; x < tablero.squaresNumber; x++) {
+				if (x == posX && y == posY)
+					tablero.nodes[x][y].setAccesible(false);
+				// TODO: Let user erase
+			}
+		}
+	}
 
 }
