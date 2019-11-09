@@ -36,7 +36,7 @@ public class GridButtonPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// JCheckBox gb = GridButtonPanel.this.getGridButton(row, col);
-				obstacleList[col][row] = true;
+				obstacleList[row][col] = true;
 			}
 		});
 		return b;
@@ -79,5 +79,3 @@ public class GridButtonPanel {
 		f.setVisible(true);
 	}
 }
-
-

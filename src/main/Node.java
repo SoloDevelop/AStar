@@ -52,60 +52,60 @@ public class Node {
 		return false;
 	}
 
-	public ArrayList<Node> getNeighborsRadar() {
-		Tablero tablero = Tablero.getSingletonInstance();
+//	public ArrayList<Node> getNeighborsRadar() { //TODO: mayb tablero has to deal with ths
+//		Tablero tablero = Tablero.getSingletonInstance();
+//
+//		for (int i = 0; i < tablero.side; i++) {
+//			for (int j = 0; j < tablero.side; j++) {
+//				Node n = tablero.nodes[i][j];
+//				if (this.isDiagonal(n)) {
+//					neighbors.add(n);
+//				} else if (this.isOnSide(n)) {
+//					neighbors.add(n);
+//				}
+//			}
+//		}
+//
+//		return neighbors;
+//	}
 
-		for (int i = 0; i < tablero.side; i++) {
-			for (int j = 0; j < tablero.side; j++) {
-				Node n = tablero.nodes[i][j];
-				if (this.isDiagonal(n)) {
-					neighbors.add(n);
-				} else if (this.isOnSide(n)) {
-					neighbors.add(n);
-				}
-			}
-		}
-
-		return neighbors;
-	}
-
-	public ArrayList<Node> getNeighbors() {
-		Tablero tablero = Tablero.getSingletonInstance();
-
-		Node node1 = tablero.nodes[positionX][positionY + 1];
-		if (node1.isAccesible())
-			neighbors.add(node1);
-
-		Node node2 = tablero.nodes[positionX][positionY - 1];
-		if (node2.isAccesible())
-			neighbors.add(node2);
-
-		Node node3 = tablero.nodes[positionX + 1][positionY + 1];
-		if (node3.isAccesible())
-			neighbors.add(node3);
-
-		Node node4 = tablero.nodes[positionX + 1][positionY];
-		if (node4.isAccesible())
-			neighbors.add(node4);
-
-		Node node5 = tablero.nodes[positionX + 1][positionY - 1];
-		if (node5.isAccesible())
-			neighbors.add(node5);
-
-		Node node6 = tablero.nodes[positionX - 1][positionY + 1];
-		if (node6.isAccesible())
-			neighbors.add(node6);
-
-		Node node7 = tablero.nodes[positionX - 1][positionY];
-		if (node7.isAccesible())
-			neighbors.add(node7);
-
-		Node node8 = tablero.nodes[positionX - 1][positionY - 1];
-		if (node8.isAccesible())
-			neighbors.add(node8);
-
-		return neighbors;
-	}
+//	public ArrayList<Node> getNeighbors() {
+//		Tablero tablero = Tablero.getSingletonInstance();
+//
+//		Node node1 = tablero.nodes[positionX][positionY + 1];
+//		if (node1.isAccesible())
+//			neighbors.add(node1);
+//
+//		Node node2 = tablero.nodes[positionX][positionY - 1];
+//		if (node2.isAccesible())
+//			neighbors.add(node2);
+//
+//		Node node3 = tablero.nodes[positionX + 1][positionY + 1];
+//		if (node3.isAccesible())
+//			neighbors.add(node3);
+//
+//		Node node4 = tablero.nodes[positionX + 1][positionY];
+//		if (node4.isAccesible())
+//			neighbors.add(node4);
+//
+//		Node node5 = tablero.nodes[positionX + 1][positionY - 1];
+//		if (node5.isAccesible())
+//			neighbors.add(node5);
+//
+//		Node node6 = tablero.nodes[positionX - 1][positionY + 1];
+//		if (node6.isAccesible())
+//			neighbors.add(node6);
+//
+//		Node node7 = tablero.nodes[positionX - 1][positionY];
+//		if (node7.isAccesible())
+//			neighbors.add(node7);
+//
+//		Node node8 = tablero.nodes[positionX - 1][positionY - 1];
+//		if (node8.isAccesible())
+//			neighbors.add(node8);
+//
+//		return neighbors;
+//	}
 
 	public void setNeighbors(ArrayList<Node> neighbors) {
 		this.neighbors = neighbors;

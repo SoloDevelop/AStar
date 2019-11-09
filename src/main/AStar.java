@@ -7,6 +7,7 @@ public class AStar {
 
 	public static Stack<Node> Move(Node startNode, Node targetNode) {
 
+		Tablero tablero = Tablero.getSingletonInstance();
 		Node currentNode = null;
 		ArrayList<Node> openList = new ArrayList<Node>(); // Nodes to process
 		ArrayList<Node> closedList = new ArrayList<Node>(); // Nodes processed
@@ -27,7 +28,7 @@ public class AStar {
 			openList.remove(currentNode); // Processed
 			closedList.add(currentNode);
 
-			for (Node neighborNode : currentNode.getNeighbors()) {
+			for (Node neighborNode : tablero.getNeighbors(currentNode)) {
 
 				if (!FindNodeInList(neighborNode, closedList)) {
 
@@ -83,11 +84,12 @@ public class AStar {
 	private static Node GetLowestFScore(ArrayList<Node> openList) {
 
 		int lowestScore = openList.get(0).fScore;
+
 		Node node = null;
 
 		for (Node n : openList) {
 
-			if (n.fScore < lowestScore) {
+			if (n.fScore <= lowestScore) {
 				lowestScore = n.fScore;
 				node = n;
 			}

@@ -37,9 +37,6 @@ public class Frame extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-
-				new main.TrainDemo().display();
-
 				try {
 					Frame f = new Frame();
 					f.setVisible(true);
@@ -96,21 +93,6 @@ public class Frame extends JFrame {
 		});
 		northPanel.add(btn_SetGoal);
 
-		JButton btn_Start = new JButton("Start");
-		btn_Start.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int squareSides = Integer.parseInt(tf_squareSide.getText());
-				tablero = Tablero.getSingletonInstance(squareSides);
-				try {
-					Start(squareSides);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		northPanel.add(btn_Start);
-
 		JPanel centrePanel = new JPanel();
 		contentPane.add(centrePanel, BorderLayout.CENTER);
 		centrePanel.setLayout(null);
@@ -124,11 +106,26 @@ public class Frame extends JFrame {
 		btnTerminate.setBounds(152, 93, 114, 25);
 		centrePanel.add(btnTerminate);
 
+		JButton btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int squareSides = Integer.parseInt(tf_squareSide.getText());
+				tablero = Tablero.getSingletonInstance(squareSides);
+				try {
+					Start(squareSides);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnStart.setBounds(10, 94, 114, 25);
+		centrePanel.add(btnStart);
+
 	}
 
 	public void Start(int sq) throws InterruptedException {
-		// TODO Auto-generated method stub
-		tablero = Tablero.getSingletonInstance(8);
-		Game.begin(sq);
+		// Game.begin(sq);
+		new main.Demo().display();
 	}
 }
