@@ -19,6 +19,7 @@ import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.awt.event.ActionEvent;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSplitPane;
@@ -100,7 +101,11 @@ public class Frame extends JFrame {
 		JButton btnTerminate = new JButton("Terminate");
 		btnTerminate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Game.off();
+				// TODO: terminate
+				int squareSides = Integer.parseInt(tf_squareSide.getText());
+				tablero = Tablero.getSingletonInstance(squareSides);
+				Stack<Node> stack = tablero.getPath();
+				System.out.println(stack);
 			}
 		});
 		btnTerminate.setBounds(152, 93, 114, 25);

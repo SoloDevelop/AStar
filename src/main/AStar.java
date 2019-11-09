@@ -60,6 +60,7 @@ public class AStar {
 		return null;
 	}
 
+	// TODO: NO sabe subir?
 	private static boolean FindNodeInList(Node node, ArrayList<Node> list) {
 		// TODO Auto-generated method stub
 		for (Node n : list) {

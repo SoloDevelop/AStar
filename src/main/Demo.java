@@ -23,7 +23,9 @@ public class Demo {
 class DemoCanvas extends JComponent {
 	Tablero tablero;
 	private int lastX;
-	private int lastY;
+	private int lastY; // TODO: Delet this
+	int posX;
+	int posY;
 	int targetXPos;
 	int targetYPos;
 	boolean on = true;
@@ -37,18 +39,22 @@ class DemoCanvas extends JComponent {
 				tablero = Tablero.getSingletonInstance();
 				if (tablero.nodes != null) {
 					path = tablero.getPath();
-					lastX = tablero.startNode.positionX * 100 + 50;
-					lastY = tablero.startNode.positionY * 100 + 50;
-					targetXPos = tablero.goalNode.positionX * 100 + 50;
-					targetYPos = tablero.goalNode.positionY * 100 + 50;
+					posX = tablero.startNode.positionX * 100;
+					posY = tablero.startNode.positionY * 100;
+					lastX = tablero.startNode.positionX * 100;
+					lastY = tablero.startNode.positionY * 100;
+
 				} else
 					System.out.println("Null nodes");
 
 				while (on) {
 					repaint();
+					move();
 					try {
 						Thread.sleep(10);
-					} catch (Exception ex) {
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			}
@@ -72,9 +78,17 @@ class DemoCanvas extends JComponent {
 
 		Graphics2D gg = (Graphics2D) g;
 
-		int trainW = 30;
-		int trainH = 30;
-		int speed = 3;
+		int trainW = 33;
+		int trainH = 33;
+
+		gg.setColor(Color.BLACK);
+		gg.fillRect(posX + 33, posY + 33, trainW, trainH);
+
+	}
+
+	public void move() {
+
+		int speed = 2;
 
 		int x = 0;
 		int y = 0;
@@ -110,19 +124,18 @@ class DemoCanvas extends JComponent {
 			y = lastY - speed;
 		}
 
-		if (lastX > targetXPos - 10 && x < targetXPos + 10) {
+		if (lastX > targetXPos - 5 && x < targetXPos + 5) {
 			x = targetXPos;
 		}
 
-		if (lastY > targetYPos - 10 && y < targetYPos + 10) {
+		if (lastY > targetYPos - 5 && y < targetYPos + 5) {
 			y = targetYPos;
 		}
 
-		gg.setColor(Color.BLACK);
-		gg.fillRect(x + 50, y + 50, trainW, trainH);
-
 		lastX = x;
 		lastY = y;
+		posX = x;
+		posY = y;
 
 	}
 

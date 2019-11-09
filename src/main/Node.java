@@ -145,7 +145,7 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "Node " + num + " at " + positionX + "x " + positionY + "y is " + accesible;
+		return "Node " + num + " at " + positionX + "x " + positionY + "y.";
 	}
 
 }

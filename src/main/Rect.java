@@ -10,4 +10,8 @@ public class Rect {
 		this.y = y;
 	}
 
+	public Rect getCentre() {
+		return new Rect(x + 33, y + 33);
+	}
+
 }
