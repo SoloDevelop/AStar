@@ -1,13 +1,6 @@
 package main;
 
 import java.awt.GridLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,27 +9,38 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSplitPane;
 
-public class GridButtonPanel {
+public class GridGoalPanel {
 
 	public static int N = 8;
-	private final List<JCheckBox> buttonList = new ArrayList<JCheckBox>();
-	public boolean[][] obstacleList = new boolean[N][N];
+	private final List<JRadioButton> buttonList = new ArrayList<JRadioButton>();
+	public ArrayList<Vector<Integer>> startGoal = new ArrayList<Vector<Integer>>();
+
 	Tablero tablero;
 
-	private JCheckBox getGridButton(int r, int c) {
+	private JRadioButton getGridButton(int r, int c) {
 		int index = r * N + c;
 		return buttonList.get(index);
 	}
 
-	private JCheckBox createGridButton(final int row, final int col) {
-		final JCheckBox b = new JCheckBox();
+	private JRadioButton createGridButton(final int row, final int col) {
+		final JRadioButton b = new JRadioButton();
 		b.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO: Solo se guarda el primero que se marca
 				// JCheckBox gb = GridButtonPanel.this.getGridButton(row, col);
-				obstacleList[col][row] = true;
+				if (startGoal.size() < 2) {
+					Vector<Integer> v = new Vector<Integer>();
+					v.add(col);
+					v.add(row);
+					startGoal.add(v);
+				}
 			}
 		});
 		return b;
@@ -47,7 +51,7 @@ public class GridButtonPanel {
 		for (int i = 0; i < N * N; i++) {
 			int row = i / N;
 			int col = i % N;
-			JCheckBox gb = createGridButton(row, col);
+			JRadioButton gb = createGridButton(row, col);
 			buttonList.add(gb);
 			p.add(gb);
 		}
@@ -55,6 +59,8 @@ public class GridButtonPanel {
 	}
 
 	public void display() {
+
+		tablero = Tablero.getSingletonInstance();
 
 		JFrame f = new JFrame("GridButton");
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -65,8 +71,9 @@ public class GridButtonPanel {
 		JButton btnSend = new JButton("Send");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				tablero = Tablero.getSingletonInstance();
-				tablero.setUnaccessibles(obstacleList);
+				// TODO: delete this
+				tablero.setGoal(startGoal);
+				System.out.println(tablero.getGoalCheck());
 			}
 		});
 
@@ -79,5 +86,3 @@ public class GridButtonPanel {
 		f.setVisible(true);
 	}
 }
-
-

@@ -6,9 +6,7 @@ public class Node {
 
 	public int num;
 	public Node parent;
-	public boolean accesible;
-
-	Tablero tablero = Tablero.getSingletonInstance(10);
+	public boolean accesible = true;
 
 	private ArrayList<Node> neighbors = new ArrayList<Node>(); // Nodes next to this one
 
@@ -55,9 +53,10 @@ public class Node {
 	}
 
 	public ArrayList<Node> getNeighborsRadar() {
+		Tablero tablero = Tablero.getSingletonInstance();
 
-		for (int i = 0; i < tablero.squaresNumber; i++) {
-			for (int j = 0; j < tablero.squaresNumber; j++) {
+		for (int i = 0; i < tablero.side; i++) {
+			for (int j = 0; j < tablero.side; j++) {
 				Node n = tablero.nodes[i][j];
 				if (this.isDiagonal(n)) {
 					neighbors.add(n);
@@ -71,6 +70,7 @@ public class Node {
 	}
 
 	public ArrayList<Node> getNeighbors() {
+		Tablero tablero = Tablero.getSingletonInstance();
 
 		Node node1 = tablero.nodes[positionX][positionY + 1];
 		if (node1.isAccesible())
@@ -141,6 +141,11 @@ public class Node {
 
 	public void setgScore(int gScore) {
 		this.gScore = gScore;
+	}
+
+	@Override
+	public String toString() {
+		return "Node " + num + " at " + positionX + "x " + positionY + "y is " + accesible;
 	}
 
 }

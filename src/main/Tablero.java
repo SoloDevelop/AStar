@@ -1,18 +1,21 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 public class Tablero {
 
-	public int squaresNumber;
+	public int side = 8;
 	private static Tablero tablero;
 
-	Node[][] nodes = new Node[squaresNumber][squaresNumber];
+	Node[][] nodes = new Node[side][side];
+	Node startNode;
+	Node goalNode;
 
 	// #REGION SINGLETON START
 	private Tablero(int squares) {
-		this.squaresNumber = squares;
+		this.side = squares;
 		int k = 1;
 		for (int y = 0; y < squares; y++) {
 			for (int x = 0; x < squares; x++) {
@@ -32,25 +35,54 @@ public class Tablero {
 
 	public static Tablero getSingletonInstance() {
 		if (tablero == null) {
-			tablero = new Tablero(0);
+			tablero = new Tablero(8);
 		}
 		return tablero;
 	}
 
-	// SINGLETON END
+	public void setUnaccessibles(boolean[][] obstacleMatrix) {
 
-	public static void setUnaccessibles(Vector<Integer> v) {
+		int squares = this.side;
 
-		int posX = v.get(0);
-		int posY = v.get(1);
-
-		for (int y = 0; y < tablero.squaresNumber; y++) {
-			for (int x = 0; x < tablero.squaresNumber; x++) {
-				if (x == posX && y == posY)
+		System.out.println(squares);
+		for (int y = 0; y < squares; y++) {
+			for (int x = 0; x < squares; x++) {
+				if (obstacleMatrix[y][x]) {
 					tablero.nodes[x][y].setAccesible(false);
-				// TODO: Let user erase
+					System.out.println(tablero.nodes[x][y].num + " set unaccessible.");
+					// System.out.println("Node " + x + " " + y + " is " +
+					// tablero.nodes[x][y].isAccesible());
+				}
 			}
 		}
+	}
+
+	public int getSide() {
+		return side;
+	}
+
+	public void setSide(int side) {
+		this.side = side;
+	}
+
+	public void setGoal(ArrayList<Vector<Integer>> startGoal) {
+		// TODO Auto-generated method stub
+		int startPosX = startGoal.get(0).get(0);
+		int startPosY = startGoal.get(0).get(1);
+
+		int goalPosX = startGoal.get(1).get(0);
+		int goalPosY = startGoal.get(1).get(1);
+
+		System.out.println(tablero.nodes[startPosX][startPosY].toString());
+		startNode = tablero.nodes[startPosX][startPosY];
+		goalNode = tablero.nodes[goalPosX][goalPosY];
+
+		System.out.println(startNode.toString());
+		System.out.println(goalNode.toString());
+	}
+
+	public String getGoalCheck() {
+		return "Start " + startNode.toString() + "\n" + "Goal " + goalNode.toString();
 	}
 
 }

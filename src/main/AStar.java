@@ -3,9 +3,9 @@ package main;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public abstract class AStar {
+public class AStar {
 
-	public Stack<Node> Move(Node startNode, Node targetNode) {
+	public static Stack<Node> Move(Node startNode, Node targetNode) {
 
 		Node currentNode = null;
 		ArrayList<Node> openList = new ArrayList<Node>(); // Nodes to process
@@ -59,7 +59,7 @@ public abstract class AStar {
 		return null;
 	}
 
-	private boolean FindNodeInList(Node node, ArrayList<Node> list) {
+	private static boolean FindNodeInList(Node node, ArrayList<Node> list) {
 		// TODO Auto-generated method stub
 		for (Node n : list) {
 			if (n.equals(node))
@@ -68,7 +68,7 @@ public abstract class AStar {
 		return false;
 	}
 
-	private Stack<Node> ConstructPath(Node node) {
+	private static Stack<Node> ConstructPath(Node node) {
 		// TODO Auto-generated method stub
 		Stack<Node> path = new Stack<Node>();
 
@@ -80,7 +80,7 @@ public abstract class AStar {
 		return path;
 	}
 
-	private Node GetLowestFScore(ArrayList<Node> openList) {
+	private static Node GetLowestFScore(ArrayList<Node> openList) {
 
 		int lowestScore = openList.get(0).fScore;
 		Node node = null;
@@ -95,7 +95,7 @@ public abstract class AStar {
 		return node;
 	}
 
-	private int hScore(Node startNode, Node targetNode) {
+	private static int hScore(Node startNode, Node targetNode) {
 
 		int xDelta = Math.abs(targetNode.positionX - startNode.positionX);
 		int yDelta = Math.abs(targetNode.positionY - startNode.positionY);
