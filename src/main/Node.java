@@ -1,14 +1,10 @@
 package main;
 
-import java.util.ArrayList;
-
 public class Node {
 
 	public int num;
 	public Node parent;
 	public boolean accesible = true;
-
-	private ArrayList<Node> neighbors = new ArrayList<Node>(); // Nodes next to this one
 
 	public int fScore; // hScore (# of squares away from target - Manhattan eq) + gScore
 	public int gScore; // Movement cost record
@@ -37,6 +33,7 @@ public class Node {
 		return false;
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isOnSide(Node node) {
 		// Self explanatory
 		if (node.positionX == this.positionX) {
@@ -106,10 +103,6 @@ public class Node {
 //
 //		return neighbors;
 //	}
-
-	public void setNeighbors(ArrayList<Node> neighbors) {
-		this.neighbors = neighbors;
-	}
 
 	public int getNum() {
 		return num;

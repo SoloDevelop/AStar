@@ -6,30 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import javax.swing.JTable;
-import java.awt.GridBagConstraints;
-import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import java.awt.Insets;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 import java.awt.event.ActionEvent;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JSplitPane;
 
-public class Frame extends JFrame {
+public class App extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7975717315846968561L;
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField tf_squareSide;
-	public static Frame frame;
+	public static App frame;
 	Tablero tablero;
 
 	/**
@@ -39,7 +31,7 @@ public class Frame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Frame f = new Frame();
+					App f = new App();
 					f.setVisible(true);
 					frame = f;
 				} catch (Exception e) {
@@ -53,7 +45,7 @@ public class Frame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Frame() {
+	public App() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 200);
 		contentPane = new JPanel();

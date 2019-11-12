@@ -42,7 +42,7 @@ public class AStar {
 					if (!FindNodeInList(currentNode, openList)) {
 
 						neighborNode.gScore = testGScore;
-						neighborNode.fScore = neighborNode.gScore + hScore(currentNode, targetNode);
+						neighborNode.fScore = neighborNode.gScore + hScore(neighborNode, targetNode);
 						neighborNode.parent = currentNode;
 						openList.add(neighborNode);
 
@@ -50,7 +50,7 @@ public class AStar {
 
 						if (testGScore < neighborNode.gScore) {
 							neighborNode.gScore = testGScore;
-							neighborNode.fScore = neighborNode.gScore + hScore(currentNode, targetNode);
+							neighborNode.fScore = neighborNode.gScore + hScore(neighborNode, targetNode);
 							neighborNode.parent = currentNode;
 						}
 					}
@@ -63,11 +63,15 @@ public class AStar {
 	// TODO: NO sabe subir?
 	private static boolean FindNodeInList(Node node, ArrayList<Node> list) {
 		// TODO Auto-generated method stub
-		for (Node n : list) {
-			if (n.equals(node))
-				return true;
-		}
-		return false;
+		if (list.contains(node))
+			return true;
+		else
+			return false;
+//		for (Node n : list) {
+//			if (n.equals(node))
+//				return true;
+//		}
+//		return false;
 	}
 
 	private static Stack<Node> ConstructPath(Node node) {

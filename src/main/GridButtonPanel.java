@@ -24,6 +24,7 @@ public class GridButtonPanel {
 	public boolean[][] obstacleList = new boolean[N][N];
 	Tablero tablero;
 
+	@SuppressWarnings("unused")
 	private JCheckBox getGridButton(int r, int c) {
 		int index = r * N + c;
 		return buttonList.get(index);

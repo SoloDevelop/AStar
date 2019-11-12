@@ -22,6 +22,7 @@ public class GridGoalPanel {
 
 	Tablero tablero;
 
+	@SuppressWarnings("unused")
 	private JRadioButton getGridButton(int r, int c) {
 		int index = r * N + c;
 		return buttonList.get(index);

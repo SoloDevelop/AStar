@@ -21,6 +21,10 @@ public class Demo {
 }
 
 class DemoCanvas extends JComponent {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2789076335634823153L;
 	Tablero tablero;
 	private int lastX;
 	private int lastY; // TODO: Delet this
@@ -69,7 +73,10 @@ class DemoCanvas extends JComponent {
 		for (int y = 0; y <= 700; y += 100) {
 			j = 0;
 			for (int x = 0; x <= 700; x += 100) {
-				g.drawRect(x, y, 100, 100);
+				if (!tablero.nodes[j][i].isAccesible())
+					g.fillRect(x, y, 100, 100);
+				else
+					g.drawRect(x, y, 100, 100);
 				board[i][j] = new Rect(x, y);
 				j++;
 			}
