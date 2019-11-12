@@ -73,10 +73,15 @@ class DemoCanvas extends JComponent {
 		for (int y = 0; y <= 700; y += 100) {
 			j = 0;
 			for (int x = 0; x <= 700; x += 100) {
-				if (!tablero.nodes[j][i].isAccesible())
+				if (!tablero.nodes[j][i].isAccesible()) {
+					g.setColor(Color.black);
 					g.fillRect(x, y, 100, 100);
-				else
-					g.drawRect(x, y, 100, 100);
+				} else if (tablero.nodes[j][i] == tablero.startNode || tablero.nodes[j][i] == tablero.goalNode) {
+					g.setColor(Color.RED);
+					g.fillRect(x, y, 100, 100);
+				} else
+					g.setColor(Color.black);
+				g.drawRect(x, y, 100, 100);
 				board[i][j] = new Rect(x, y);
 				j++;
 			}
